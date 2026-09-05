@@ -1,0 +1,87 @@
+/* css/global.css */
+
+:root {
+  /* Color Palette - Modern Noir Database */
+  --bg-primary: #0a0a0c;
+  --bg-secondary: #121316;
+  --bg-tertiary: #1a1c23;
+  
+  --surface-card: #f4f1ea;
+  --surface-card-alt: #e8e4d9;
+  
+  --text-primary: #f0f0f3;
+  --text-secondary: #a0a3b1;
+  --text-muted: #606370;
+  --text-dark: #121316;
+  
+  --accent-gold: #c9a050;
+  --accent-red: #9e2a2b;
+  --accent-blue: #2b4c7e;
+  
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --border-card: rgba(0, 0, 0, 0.12);
+
+  /* Typography */
+  --font-serif: "Playfair Display", "Georgia", "Times New Roman", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", Courier, monospace;
+
+  /* Transitions & FX */
+  --transition-fast: 0.15s ease;
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  background: radial-gradient(circle at 50% 0%, var(--bg-secondary) 0%, var(--bg-primary) 70%);
+}
+
+/* Base Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+code, pre, .tech-data {
+  font-family: var(--font-mono);
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn var(--transition-smooth) forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
