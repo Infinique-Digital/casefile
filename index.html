@@ -4,55 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Case File archive dashboard">
   <title>CASEFILE // Terminal Database</title>
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-
-  <!-- Modular Stylesheets -->
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
   <div style="max-width: 1000px; margin: 0 auto; padding: 2rem;" class="fade-in">
-    
-    <!-- Header Area -->
     <header style="border-bottom: 1px solid var(--border-subtle); padding-bottom: 1.5rem; margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end;">
       <div>
         <span class="tech-data" style="color: var(--accent-gold); font-size: 0.75rem; letter-spacing: 0.15em;">SYS.VER 2.0.4 // CLASSIFIED</span>
         <h1 style="font-size: 2.5rem; margin-top: 0.25rem;">CASEFILE ARCHIVE</h1>
       </div>
-      <div class="tech-data" style="color: var(--text-muted); font-size: 0.8125rem;">
-        STATUS: ENCRYPTED SESSION
-      </div>
+      <div class="tech-data" style="color: var(--text-muted); font-size: 0.8125rem;">STATUS: ENCRYPTED SESSION</div>
     </header>
-
-    <!-- UI Component Preview Section -->
     <main style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-      
-      <!-- Left Column: Controls & Form Inputs -->
       <section style="display: flex; flex-direction: column; gap: 1.5rem;">
         <h2 style="font-size: 1.25rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;">DATABASE CONTROLS</h2>
-        
         <div class="input-group">
           <label class="input-label" for="search-input">Search Subject / Record ID</label>
           <input type="text" id="search-input" class="input-field" placeholder="e.g. SUBJ-8804 or 'Blackwood'">
         </div>
-
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <button class="btn">Standard Access</button>
           <button class="btn btn-accent">Filter Record</button>
           <button class="btn btn-danger">Purge Logs</button>
         </div>
       </section>
-
-      <!-- Right Column: Card Components -->
       <section style="display: flex; flex-direction: column; gap: 1.5rem;">
         <h2 style="font-size: 1.25rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;">EVIDENCE & SUBJECT FILES</h2>
-        
-        <!-- Ivory Document Card -->
         <article class="card">
           <div class="card-header">
             <h3 class="card-title">Evidence #04: Recorded Wiretap</h3>
@@ -61,13 +44,8 @@
           <div class="card-body">
             <p>Audio log recovered from target location. Audio analysis indicates two distinct voices discussing financial transfers at midnight.</p>
           </div>
-          <div class="card-footer">
-            <span>TIMESTAMP: 23:14:02</span>
-            <span>SRC: UNIT-B</span>
-          </div>
+          <div class="card-footer"><span>TIMESTAMP: 23:14:02</span><span>SRC: UNIT-B</span></div>
         </article>
-
-        <!-- Dark Technical Card -->
         <article class="card card-dark">
           <div class="card-header">
             <h3 class="card-title">System Activity Log</h3>
@@ -80,16 +58,10 @@
               [12:06:45] OVERRIDE_REQUESTED - Status: PENDING
             </p>
           </div>
-          <div class="card-footer">
-            <span>NODE: SEC-01</span>
-            <span>LATENCY: 12ms</span>
-          </div>
+          <div class="card-footer"><span>NODE: SEC-01</span><span>LATENCY: 12ms</span></div>
         </article>
-
       </section>
-
     </main>
-
   </div>
 </body>
 </html>
