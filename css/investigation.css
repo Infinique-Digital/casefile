@@ -438,6 +438,22 @@ body {
     user-select: none;
 }
 
+/* Blurred description styling for overview tab */
+.evidence-desc {
+    letter-spacing: 0.1em;
+    word-break: break-all;
+    font-weight: 600;
+    color: #8b7355;
+    transition: var(--transition);
+}
+
+/* Indicate blurred content with visual treatment */
+.evidence-card .evidence-desc:contains("●") {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
 .evidence-header,
 .evidence-footer {
     display: flex;
