@@ -1,7 +1,7 @@
-import { loadState, unlockEvidence } from './storage.js';
+import { loadState } from './storage.js';
 
 /**
- * Renders the unlocked evidence items into the designated container.
+ * Renders every evidence item for the active case into the designated container.
  * Reads data from window.CASEFILE_DATA or LocalStorage.
  * @param {Array} evidenceData - Array of evidence objects
  */
@@ -10,7 +10,7 @@ export function renderEvidence(evidenceData, activeCaseId) {
   if (!container) return;
 
   const state = loadState();
-  const unlockedIds = state.unlockedEvidence;
+  const unlockedIds = Array.isArray(state.unlockedEvidence) ? state.unlockedEvidence : [];
   const itemsToRender = evidenceData.filter(item => item.caseId === activeCaseId);
 
   if (itemsToRender.length === 0) {
@@ -18,8 +18,13 @@ export function renderEvidence(evidenceData, activeCaseId) {
     return;
   }
 
-  container.innerHTML = itemsToRender.map(item => `
-    <article class="card evidence-card" data-id="${item.id}">
+
+  container.innerHTML = itemsToRender.map(item => {
+    const isLocked = Boolean(item.unlockCondition) && !unlockedIds.includes(item.id);
+    const status = isLocked ? 'ARCHIVE LOCKED - VERIFY FIRST' : item.unlockCondition ? 'FILE OPENED' : 'AVAILABLE';
+
+    return `
+    <article class="card evidence-card${isLocked ? ' is-locked' : ''}" data-id="${item.id}">
       <header class="evidence-header">
         <span class="evidence-id">${item.id}</span>
         <span class="evidence-type">${item.type.toUpperCase()}</span>
@@ -27,21 +32,14 @@ export function renderEvidence(evidenceData, activeCaseId) {
       <div class="evidence-body">
         <h3 class="evidence-title">${item.name}</h3>
         <p class="evidence-desc">${item.description}</p>
-        ${item.unlockCondition && !unlockedIds.includes(item.id)
-          ? `<button type="button" class="btn btn-accent evidence-unlock" data-evidence-id="${item.id}">UNLOCK FILE</button>`
-          : item.unlockCondition ? '<span class="evidence-status">FILE OPENED</span>' : ''}
+        <span class="evidence-status">${status}</span>
+        ${isLocked ? '' : `<a class="btn btn-accent evidence-open" href="evidence.html?case=${encodeURIComponent(activeCaseId)}&evidence=${encodeURIComponent(item.id)}">OPEN EVIDENCE</a>`}
       </div>
       <footer class="evidence-footer">
         <span class="evidence-meta">LOC: ${item.locationFound || 'UNKNOWN'}</span>
         <span class="evidence-meta">DATE: ${item.dateAcquired || 'N/A'}</span>
       </footer>
     </article>
-  `).join('');
-
-  container.querySelectorAll('.evidence-unlock').forEach(button => {
-    button.addEventListener('click', () => {
-      unlockEvidence(button.dataset.evidenceId);
-      renderEvidence(evidenceData, activeCaseId);
-    });
-  });
+  `;
+  }).join('');
 }

@@ -1,0 +1,70 @@
+.evidence-workspace {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background: radial-gradient(circle at 50% 0%, var(--bg-secondary) 0%, var(--bg-primary) 70%);
+}
+
+.evidence-record {
+    width: min(100%, 760px);
+    background: var(--surface-card);
+    color: var(--text-dark);
+    border: 1px solid var(--border-card);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+}
+
+.evidence-record-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-strong);
+}
+
+.evidence-record-label,
+.evidence-record-id,
+.evidence-record-type {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.evidence-record-label {
+    color: var(--text-secondary);
+}
+
+.evidence-record-body {
+    padding: 2.5rem;
+}
+
+.evidence-record-id,
+.evidence-record-type {
+    color: var(--accent-blue);
+}
+
+.evidence-record-body h1 {
+    margin: 0.75rem 0;
+    color: var(--text-dark);
+}
+
+.evidence-record-description {
+    margin-top: 2rem;
+    color: var(--text-dark);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+    .evidence-record-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .evidence-record-body {
+        padding: 1.5rem;
+    }
+}

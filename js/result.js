@@ -32,5 +32,5 @@ if (evidenceMetric) {
 }
 
 document.querySelector('#btn-return-dashboard').addEventListener('click', () => {
-    window.location.href = `investigation.html?case=${encodeURIComponent(activeCase.id)}`;
+    window.location.href = 'cases.html';
 });
