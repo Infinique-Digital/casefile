@@ -53,7 +53,8 @@ const state = loadState();
 if (state.selectedSuspectId) suspectSelect.value = state.selectedSuspectId;
 if (state.selectedEvidenceId) evidenceSelect.value = state.selectedEvidenceId;
 
-document.querySelector('#verify-puzzle').addEventListener('click', () => {
+document.querySelector('#archive-verification').addEventListener('submit', event => {
+    event.preventDefault();
     const input = document.querySelector('#puzzle-input').value;
     const feedback = document.querySelector('#puzzle-feedback');
     if (PuzzleSystem.verifyPassword(activeCase.id, input)) {
