@@ -425,3 +425,68 @@ body {
     max-width: 600px;
     margin: 0 auto;
 }
+
+/* Evidence archive cards remain visible while their contents are verified. */
+.evidence-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 320px;
+}
+
+.evidence-card.is-locked .evidence-desc {
+    filter: blur(0.45rem);
+    user-select: none;
+}
+
+.evidence-header,
+.evidence-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.evidence-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    padding-bottom: 0.75rem;
+    color: var(--card-muted);
+}
+
+.evidence-body {
+    flex: 1;
+    padding: 1rem 0;
+}
+
+.evidence-title {
+    margin-bottom: 0.75rem;
+}
+
+.evidence-desc {
+    min-height: 5.5rem;
+}
+
+.evidence-status {
+    display: block;
+    margin-top: 1rem;
+    color: var(--accent-red);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+
+.evidence-card:not(.is-locked) .evidence-status {
+    color: var(--accent-blue);
+}
+
+.evidence-open {
+    margin-top: 1rem;
+    text-decoration: none;
+}
+
+.evidence-footer {
+    border-top: 1px dashed rgba(0, 0, 0, 0.2);
+    padding-top: 0.75rem;
+    color: var(--card-muted);
+}
