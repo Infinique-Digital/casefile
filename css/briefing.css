@@ -108,7 +108,55 @@
     z-index: 2;
 }
 
+.document-footer .btn-primary {
+    appearance: none;
+    background: var(--clr-pitch-black);
+    border: 1px solid var(--clr-gold);
+    color: var(--clr-gold);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.8rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.document-footer .btn-primary:hover {
+    background: var(--clr-gold);
+    color: var(--clr-pitch-black);
+    box-shadow: 0 0 18px rgba(201, 160, 80, 0.28);
+    transform: translateY(-1px);
+}
+
+.document-footer .btn-primary:focus-visible {
+    outline: 2px solid var(--clr-gold);
+    outline-offset: 3px;
+}
+
+.document-footer .btn-primary:active {
+    transform: translateY(0);
+}
+
 .auth-signature {
     font-size: 0.8rem;
     opacity: 0.6;
+}
+
+@media (max-width: 600px) {
+    .document-footer {
+        align-items: stretch;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .document-footer .btn-primary {
+        width: 100%;
+    }
 }

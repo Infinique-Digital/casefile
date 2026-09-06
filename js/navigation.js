@@ -69,9 +69,11 @@ function switchTab(targetTabId, navButtons, sections) {
   navButtons.forEach(button => {
     if (button.dataset.tabTarget === targetTabId) {
       button.classList.add('is-active');
+      button.classList.add('active');
       button.setAttribute('aria-selected', 'true');
     } else {
       button.classList.remove('is-active');
+      button.classList.remove('active');
       button.setAttribute('aria-selected', 'false');
     }
   });
