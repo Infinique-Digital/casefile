@@ -19,6 +19,18 @@ if (activeEvidence.unlockCondition && !isEvidenceUnlocked(activeEvidence.id)) {
     document.querySelector('#evidence-id').textContent = activeEvidence.id;
     document.querySelector('#evidence-title').textContent = activeEvidence.name;
     document.querySelector('#evidence-type').textContent = activeEvidence.type.toUpperCase();
+    // Display full description (not blurred) when viewing individual evidence detail
     document.querySelector('#evidence-description').textContent = activeEvidence.description;
     document.querySelector('#back-to-investigation').href = `investigation.html?case=${encodeURIComponent(activeCase.id)}`;
 }
+
+// Prevent evidence data from being accessed/modified via console
+Object.defineProperty(window, 'CASEFILE_EVIDENCE', {
+    get() {
+        console.warn('SYS_SECURITY: Evidence archive is read-only. Unauthorized access attempt logged.');
+        return undefined;
+    },
+    set() {
+        console.warn('SYS_SECURITY: Evidence archive cannot be modified. Unauthorized modification attempt logged.');
+    }
+});
