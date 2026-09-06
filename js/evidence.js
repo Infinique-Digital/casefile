@@ -1,16 +1,19 @@
-// js/evidence.js
+import { loadState, unlockEvidence } from './storage.js';
 
 /**
  * Renders the unlocked evidence items into the designated container.
  * Reads data from window.CASEFILE_DATA or LocalStorage.
  * @param {Array} evidenceData - Array of evidence objects
  */
-function renderEvidence(evidenceData) {
+export function renderEvidence(evidenceData, activeCaseId) {
   const container = document.getElementById('evidence-grid');
   if (!container) return;
 
-  const unlockedIds = JSON.parse(localStorage.getItem('casefile_unlocked_evidence') || '[]');
-  const itemsToRender = evidenceData.filter(item => unlockedIds.includes(item.id) || item.defaultUnlocked);
+  const state = loadState();
+  const unlockedIds = state.unlockedEvidence;
+  const itemsToRender = evidenceData
+    .filter(item => item.caseId === activeCaseId)
+    .filter(item => unlockedIds.includes(item.id) || !item.unlockCondition);
 
   if (itemsToRender.length === 0) {
     container.innerHTML = `<div class="empty-state">NO EVIDENCE LOGGED IN ARCHIVE.</div>`;
@@ -18,15 +21,15 @@ function renderEvidence(evidenceData) {
   }
 
   container.innerHTML = itemsToRender.map(item => `
-    <article class="evidence-card" data-id="${item.id}">
+    <article class="card evidence-card" data-id="${item.id}">
       <header class="evidence-header">
         <span class="evidence-id">${item.id}</span>
         <span class="evidence-type">${item.type.toUpperCase()}</span>
       </header>
       <div class="evidence-body">
-        <h3 class="evidence-title">${item.title}</h3>
+        <h3 class="evidence-title">${item.name}</h3>
         <p class="evidence-desc">${item.description}</p>
-        ${item.imageUrl ? `<img src="${item.imageUrl}" alt="${item.title}" class="evidence-thumb" />` : ''}
+        ${item.unlockCondition ? `<button class="btn btn-accent evidence-unlock" data-evidence-id="${item.id}">UNLOCK FILE</button>` : ''}
       </div>
       <footer class="evidence-footer">
         <span class="evidence-meta">LOC: ${item.locationFound || 'UNKNOWN'}</span>
@@ -34,4 +37,11 @@ function renderEvidence(evidenceData) {
       </footer>
     </article>
   `).join('');
+
+  container.querySelectorAll('.evidence-unlock').forEach(button => {
+    button.addEventListener('click', () => {
+      unlockEvidence(button.dataset.evidenceId);
+      renderEvidence(evidenceData, activeCaseId);
+    });
+  });
 }

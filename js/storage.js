@@ -4,12 +4,18 @@
  */
 
 const STORAGE_KEY = 'CASEFILE_GAME_STATE';
+const ACTIVE_CASE_KEY = 'casefile.activeCaseId';
 
 const defaultState = {
+  activeCaseId: null,
   unlockedEvidence: [],
-  suspects: {}, // e.g. { "suspect_01": { status: "suspect", notes: "Lacks alibi" } }
+  suspiciousSuspects: [],
+  suspects: {},
   notes: "",
-  lastVisitedTab: "evidence"
+  puzzleProgress: {},
+  lastVisitedTab: "overview",
+  selectedSuspectId: null,
+  selectedEvidenceId: null
 };
 
 /**
@@ -19,7 +25,7 @@ const defaultState = {
 export function loadState() {
   try {
     const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : { ...defaultState };
+    return data ? { ...defaultState, ...JSON.parse(data) } : { ...defaultState };
   } catch (e) {
     console.error("CASEFILE: Failed to load state from LocalStorage.", e);
     return { ...defaultState };
@@ -36,6 +42,40 @@ export function saveState(state) {
   } catch (e) {
     console.error("CASEFILE: Failed to save state to LocalStorage.", e);
   }
+}
+
+export function getActiveCaseId() {
+    return loadState().activeCaseId || localStorage.getItem(ACTIVE_CASE_KEY);
+  }
+
+export function setActiveCaseId(caseId) {
+    const state = loadState();
+    state.activeCaseId = caseId;
+    state.lastVisitedTab = "overview";
+    saveState(state);
+    localStorage.setItem(ACTIVE_CASE_KEY, caseId);
+  }
+
+export function setSelectedAccusation(suspectId, evidenceId) {
+    const state = loadState();
+    state.selectedSuspectId = suspectId;
+    state.selectedEvidenceId = evidenceId;
+    saveState(state);
+  }
+
+export function setPuzzleComplete(puzzleId) {
+    const state = loadState();
+    state.puzzleProgress[puzzleId] = true;
+    saveState(state);
+  }
+
+export function markSuspect(suspectId) {
+    const state = loadState();
+    state.suspiciousSuspects = state.suspiciousSuspects.includes(suspectId)
+      ? state.suspiciousSuspects.filter(id => id !== suspectId)
+      : [...state.suspiciousSuspects, suspectId];
+    saveState(state);
+    return state.suspiciousSuspects;
 }
 
 /**

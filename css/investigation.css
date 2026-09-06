@@ -232,6 +232,61 @@ body {
     grid-template-columns: repeat(2, 1fr);
 }
 
+.suspect-card {
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    padding: 1.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.suspect-portrait-wrapper {
+    height: 130px;
+    background-color: #e0dad3;
+    border: 1px solid #c5beba;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.suspect-status-tag,
+.suspect-role,
+.suspect-meta-list,
+.suspect-notes {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+}
+
+.suspect-status-tag,
+.suspect-role {
+    color: var(--accent-red);
+    text-transform: uppercase;
+}
+
+.suspect-card h3 {
+    color: #000;
+    font-family: var(--font-serif);
+    margin: 0.35rem 0;
+}
+
+.suspect-meta-list {
+    list-style: none;
+    color: var(--card-muted);
+    line-height: 1.7;
+    margin: 0.75rem 0;
+}
+
+.suspect-notes {
+    color: #2b2b2b;
+    margin-bottom: 1rem;
+}
+
+.puzzle-card {
+    margin-top: 1.5rem;
+    max-width: 650px;
+}
+
 /* Document & Evidence Cards (Ivory/Parchment) */
 .card {
     background-color: var(--card-bg);

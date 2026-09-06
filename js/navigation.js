@@ -5,10 +5,6 @@
 
 import { loadState, saveState } from './storage.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  initNavigation();
-});
-
 /**
  * Initializes navigation listeners and sets the active tab based on saved state.
  */
@@ -52,10 +48,12 @@ function switchTab(targetTabId, navButtons, sections) {
   sections.forEach(section => {
     if (section.id === targetTabId) {
       section.classList.add('is-active');
+      section.classList.add('active');
       section.removeAttribute('hidden');
       targetFound = true;
     } else {
       section.classList.remove('is-active');
+      section.classList.remove('active');
       section.setAttribute('hidden', 'true');
     }
   });
@@ -63,6 +61,7 @@ function switchTab(targetTabId, navButtons, sections) {
   if (!targetFound && sections.length > 0) {
     // Fallback to first section if target tab is missing
     sections[0].classList.add('is-active');
+    sections[0].classList.add('active');
     sections[0].removeAttribute('hidden');
     targetTabId = sections[0].id;
   }
