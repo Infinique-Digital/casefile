@@ -51,6 +51,17 @@
   color: var(--text-primary);
 }
 
+.evidence-status {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--accent-blue);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 /* --- Input Fields --- */
 .input-group {
   display: flex;
