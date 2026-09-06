@@ -62,6 +62,15 @@
   text-transform: uppercase;
 }
 
+.evidence-status-locked {
+  color: var(--accent-red);
+}
+
+.evidence-locked .evidence-desc {
+  filter: blur(4px);
+  user-select: none;
+}
+
 /* --- Input Fields --- */
 .input-group {
   display: flex;

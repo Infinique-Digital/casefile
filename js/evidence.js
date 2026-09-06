@@ -1,4 +1,4 @@
-import { loadState, unlockEvidence } from './storage.js';
+import { loadState } from './storage.js';
 
 /**
  * Renders the unlocked evidence items into the designated container.
@@ -19,7 +19,7 @@ export function renderEvidence(evidenceData, activeCaseId) {
   }
 
   container.innerHTML = itemsToRender.map(item => `
-    <article class="card evidence-card" data-id="${item.id}">
+    <article class="card evidence-card${item.unlockCondition && !unlockedIds.includes(item.id) ? ' evidence-locked' : ''}" data-id="${item.id}">
       <header class="evidence-header">
         <span class="evidence-id">${item.id}</span>
         <span class="evidence-type">${item.type.toUpperCase()}</span>
@@ -27,9 +27,11 @@ export function renderEvidence(evidenceData, activeCaseId) {
       <div class="evidence-body">
         <h3 class="evidence-title">${item.name}</h3>
         <p class="evidence-desc">${item.description}</p>
-        ${item.unlockCondition && !unlockedIds.includes(item.id)
-          ? `<button type="button" class="btn btn-accent evidence-unlock" data-evidence-id="${item.id}">UNLOCK FILE</button>`
-          : item.unlockCondition ? '<span class="evidence-status">FILE OPENED</span>' : ''}
+        ${item.unlockCondition
+          ? unlockedIds.includes(item.id)
+            ? '<span class="evidence-status">FILE OPENED</span>'
+            : '<span class="evidence-status evidence-status-locked">ARCHIVE LOCKED - VERIFY FIRST</span>'
+          : ''}
       </div>
       <footer class="evidence-footer">
         <span class="evidence-meta">LOC: ${item.locationFound || 'UNKNOWN'}</span>
@@ -38,10 +40,4 @@ export function renderEvidence(evidenceData, activeCaseId) {
     </article>
   `).join('');
 
-  container.querySelectorAll('.evidence-unlock').forEach(button => {
-    button.addEventListener('click', () => {
-      unlockEvidence(button.dataset.evidenceId);
-      renderEvidence(evidenceData, activeCaseId);
-    });
-  });
 }

@@ -30,7 +30,3 @@ accuracy.classList.toggle('failure', outcome === 'incorrect');
 if (evidenceMetric) {
     evidenceMetric.textContent = `${Array.isArray(state.unlockedEvidence) ? state.unlockedEvidence.length : 0}/4`;
 }
-
-document.querySelector('#btn-return-dashboard').addEventListener('click', () => {
-    window.location.href = `investigation.html?case=${encodeURIComponent(activeCase.id)}`;
-});

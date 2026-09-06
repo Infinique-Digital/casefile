@@ -95,3 +95,37 @@
     background-color: var(--clr-dark-grey);
     border-top: 1px solid var(--clr-border);
 }
+
+.result-dashboard-button {
+    appearance: none;
+    background: var(--clr-pitch-black);
+    border: 1px solid var(--clr-gold);
+    color: var(--clr-gold);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.8rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.result-dashboard-button:hover,
+.result-dashboard-button:focus-visible {
+    background: var(--clr-gold);
+    color: var(--clr-pitch-black);
+    box-shadow: 0 0 18px rgba(201, 160, 80, 0.28);
+    transform: translateY(-1px);
+}
+
+.result-dashboard-button:focus-visible {
+    outline: 2px solid var(--clr-gold);
+    outline-offset: 3px;
+}
