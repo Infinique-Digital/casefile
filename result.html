@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASEFILE | Resolution</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/result.css">
+</head>
+<body>
+    <div class="app-container fade-in bg-pitch-black">
+        <main class="result-workspace">
+            <div class="resolution-panel border-thin shadow-cinematic">
+                <div class="resolution-header border-bottom-thin">
+                    <div class="status-indicator font-mono">INVESTIGATION CONCLUDED</div>
+                    <h1 id="result-heading" class="font-serif result-title accent-gold">
+                        Analyzing Final Accusation...
+                    </h1>
+                </div>
+
+                <div class="resolution-body bg-parchment text-black">
+                    <h2 class="font-serif section-heading">Official Post-Mortem</h2>
+                    <div id="result-narrative" class="font-sans document-body-text">
+                        Processing evidence cross-referencing and interrogation transcripts to determine the accuracy of your findings...
+                    </div>
+                    
+                    <div class="performance-metrics border-top-thin font-mono">
+                        <div class="metric-row">
+                            <span class="metric-label">EVIDENCE COLLECTED:</span>
+                            <span id="metric-evidence" class="metric-value">0/0</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">ACCURACY RATING:</span>
+                            <span id="metric-accuracy" class="metric-value">PENDING</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resolution-actions">
+                    <button id="btn-return-dashboard" class="btn-secondary font-sans border-thin">
+                        RETURN TO DASHBOARD
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+<script src="js/storage.js"></script>
+<script type="module" src="js/result.js"></script>
+</body>
+</html>

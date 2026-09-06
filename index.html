@@ -1,67 +1,42 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Case File archive dashboard">
-  <title>CASEFILE // Terminal Database</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/components.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASEFILE | Central Investigation Database</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
 </head>
-<body>
-  <div style="max-width: 1000px; margin: 0 auto; padding: 2rem;" class="fade-in">
-    <header style="border-bottom: 1px solid var(--border-subtle); padding-bottom: 1.5rem; margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: flex-end;">
-      <div>
-        <span class="tech-data" style="color: var(--accent-gold); font-size: 0.75rem; letter-spacing: 0.15em;">SYS.VER 2.0.4 // CLASSIFIED</span>
-        <h1 style="font-size: 2.5rem; margin-top: 0.25rem;">CASEFILE ARCHIVE</h1>
-      </div>
-      <div class="tech-data" style="color: var(--text-muted); font-size: 0.8125rem;">STATUS: ENCRYPTED SESSION</div>
-    </header>
-    <main style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-      <section style="display: flex; flex-direction: column; gap: 1.5rem;">
-        <h2 style="font-size: 1.25rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;">DATABASE CONTROLS</h2>
-        <div class="input-group">
-          <label class="input-label" for="search-input">Search Subject / Record ID</label>
-          <input type="text" id="search-input" class="input-field" placeholder="e.g. SUBJ-8804 or 'Blackwood'">
-        </div> 
-        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-          <button class="btn">Standard Access</button>
-          <button class="btn btn-accent">Filter Record</button>
-          <button class="btn btn-danger">Purge Logs</button>
+<body class="landing-body">
+    <div class="noise-overlay"></div>
+    <div class="vignette"></div>
+
+    <main class="landing-container fade-in">
+        <div class="system-status mono-text">
+            <span>SYS.STAT: ONLINE</span>
+            <span class="status-dot"></span>
+            <span>AUTH: REQUIRED</span>
         </div>
-      </section>
-      <section style="display: flex; flex-direction: column; gap: 1.5rem;">
-        <h2 style="font-size: 1.25rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem;">EVIDENCE & SUBJECT FILES</h2>
-        <article class="card">
-          <div class="card-header">
-            <h3 class="card-title">Evidence #04: Recorded Wiretap</h3>
-            <span class="card-stamp classified">RESTRICTED</span>
-          </div>
-          <div class="card-body">
-            <p>Audio log recovered from target location. Audio analysis indicates two distinct voices discussing financial transfers at midnight.</p>
-          </div>
-          <div class="card-footer"><span>TIMESTAMP: 23:14:02</span><span>SRC: UNIT-B</span></div>
-        </article>
-        <article class="card card-dark">
-          <div class="card-header">
-            <h3 class="card-title">System Activity Log</h3>
-            <span class="card-stamp verified">VERIFIED</span>
-          </div>
-          <div class="card-body">
-            <p class="tech-data" style="font-size: 0.8125rem; color: var(--text-secondary);">
-              [12:04:11] LOGIN_SUCCESS - User: DET_VAUGHN<br>
-              [12:05:00] RECORD_DECRYPT - ID: #8804-B<br>
-              [12:06:45] OVERRIDE_REQUESTED - Status: PENDING
-            </p>
-          </div>
-          <div class="card-footer"><span>NODE: SEC-01</span><span>LATENCY: 12ms</span></div>
-        </article>
-      </section>
+
+        <div class="title-group">
+            <h1 class="main-title">CASEFILE</h1>
+            <h2 class="sub-title">CENTRAL INVESTIGATION ARCHIVE</h2>
+        </div>
+
+        <p class="landing-description">
+            Access strictly restricted. All inquiries are logged, traced, and monitored.
+            Proceed only with Level 4 clearance or higher.
+        </p>
+
+        <div class="action-section">
+            <a href="cases.html" class="btn-primary">ENTER DATABASE</a>
+        </div>
     </main>
-  </div>
+
+    <footer class="site-footer mono-text fade-in-delayed">
+        <span>SYSTEM COMPILED BY INFINIQUE DIGITAL // IN ASSOCIATION WITH PRAVEEN EPILI</span>
+    </footer>
 </body>
 </html>

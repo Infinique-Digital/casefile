@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASEFILE | Briefing</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/briefing.css">
+</head>
+<body>
+    <div class="app-container fade-in">
+        <header class="top-bar border-bottom-thin">
+            <div class="sys-info font-mono">SYS_AUTH: VERIFIED</div>
+            <div class="brand-title font-serif accent-gold">CASEFILE // ARCHIVE</div>
+            <div class="sys-time font-mono" id="system-clock">00:00:00</div>
+        </header>
+
+        <main class="briefing-workspace">
+            <div class="document-container bg-parchment text-black shadow-cinematic">
+                <div class="document-header border-bottom-thin">
+                    <span class="classification font-mono text-crimson">RESTRICTED ACCESS // EYES ONLY</span>
+                    <h1 id="case-title" class="font-serif case-heading">Retrieving Case File...</h1>
+                    <div class="case-meta font-mono">
+                        <span class="meta-item">CASE ID: <span id="case-id">WAITING...</span></span>
+                        <span class="meta-item">JURISDICTION: <span id="case-location">WAITING...</span></span>
+                        <span class="meta-item">STATUS: <span class="accent-mustard">OPEN</span></span>
+                    </div>
+                </div>
+                
+                <div class="document-content font-sans">
+                    <h2 class="font-serif section-heading">Incident Summary</h2>
+                    <p id="case-description" class="document-body-text">
+                        Connecting to secure database. Establishing encrypted stream for initial incident reports...
+                    </p>
+                    
+                    <h2 class="font-serif section-heading">Investigative Objective</h2>
+                    <p id="case-objective" class="document-body-text">
+                        Awaiting central command parameters...
+                    </p>
+                </div>
+
+                <div class="document-footer border-top-thin">
+                    <div class="auth-signature font-mono">
+                        AUTHORIZED BY: DIRECTOR REYES
+                    </div>
+                    <button id="btn-begin-investigation" class="btn-primary font-sans">
+                        BEGIN INVESTIGATION
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/storage.js"></script>
+    <script type="module" src="js/briefing.js"></script>
+</body>
+</html>
