@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CASEFILE // Investigation Terminal</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/investigation.css">
 </head>
 <body>
@@ -12,124 +14,43 @@
             <div class="brand">
                 <span class="brand-sub">DEPARTMENT OF JUSTICE</span>
                 <h1 class="brand-title">CASEFILE</h1>
-                <span class="case-id">CASE #1984-EX</span>
+                <span class="case-id" id="case-id">LOADING...</span>
             </div>
-            
-            <nav class="nav-menu">
-                <button class="nav-tab active" data-tab="overview">
-                    <span class="tab-index">01</span>
-                    <span class="tab-label">Overview</span>
-                </button>
-                <button class="nav-tab" data-tab="suspects">
-                    <span class="tab-index">02</span>
-                    <span class="tab-label">Suspects</span>
-                </button>
-                <button class="nav-tab" data-tab="evidence">
-                    <span class="tab-index">03</span>
-                    <span class="tab-label">Evidence</span>
-                </button>
-                <button class="nav-tab" data-tab="timeline">
-                    <span class="tab-index">04</span>
-                    <span class="tab-label">Timeline</span>
-                </button>
-                <button class="nav-tab accuse-tab" data-tab="accuse">
-                    <span class="tab-index">05</span>
-                    <span class="tab-label">Accuse</span>
-                </button>
+            <nav class="nav-menu" aria-label="Investigation sections">
+                <button class="nav-tab active" data-tab-target="overview" aria-selected="true"><span class="tab-index">01</span><span class="tab-label">Overview</span></button>
+                <button class="nav-tab" data-tab-target="suspects" aria-selected="false"><span class="tab-index">02</span><span class="tab-label">Suspects</span></button>
+                <button class="nav-tab" data-tab-target="evidence" aria-selected="false"><span class="tab-index">03</span><span class="tab-label">Evidence</span></button>
+                <button class="nav-tab" data-tab-target="timeline" aria-selected="false"><span class="tab-index">04</span><span class="tab-label">Timeline</span></button>
+                <button class="nav-tab accuse-tab" data-tab-target="accuse" aria-selected="false"><span class="tab-index">05</span><span class="tab-label">Accuse</span></button>
             </nav>
-
             <div class="sidebar-footer">
-                <div class="status-indicator">
-                    <span class="status-dot"></span>
-                    <span class="status-text">CLASSIFIED ACCESS</span>
-                </div>
+                <div class="status-indicator"><span class="status-dot"></span><span class="status-text">CLASSIFIED ACCESS</span></div>
             </div>
         </aside>
-
         <main class="main-content">
             <header class="content-header">
-                <div class="header-metadata">
-                    <span class="meta-label">CURRENT FILE:</span>
-                    <span class="meta-value">THE BLACKWOOD INCIDENT</span>
-                </div>
-                <div class="header-actions">
-                    <span class="time-stamp">STATION 04 // 23:41:09</span>
-                </div>
+                <div class="header-metadata"><span class="meta-label">CURRENT FILE:</span><span class="meta-value" id="case-title">LOADING...</span></div>
+                <div class="header-actions"><span class="time-stamp" id="system-clock">--:--:--</span></div>
             </header>
-
-            <section id="overview" class="tab-pane active">
+            <section id="overview" class="tab-pane active" data-tab-content>
                 <div class="pane-grid">
-                    <div class="card evidence-card primary">
-                        <div class="card-header">
-                            <span class="card-tag">SUMMARY</span>
-                            <span class="card-num">DOC-001</span>
-                        </div>
-                        <h2>Incident Briefing</h2>
-                        <p>At 02:14 hours, victim Arthur Blackwood was discovered unresponsive in his study. Initial indicators point to deliberate foul play. Access restricted to tier-1 investigators.</p>
-                    </div>
-                    <div class="card evidence-card">
-                        <div class="card-header">
-                            <span class="card-tag">STATUS</span>
-                            <span class="card-num">LOG-002</span>
-                        </div>
-                        <h3>Primary Objectives</h3>
-                        <ul class="objective-list">
-                            <li>Cross-examine witness testimonies.</li>
-                            <li>Analyze physical evidence recovered from scene.</li>
-                            <li>Establish verified sequence of events.</li>
-                        </ul>
-                    </div>
+                    <div class="card evidence-card primary"><div class="card-header"><span class="card-tag">SUMMARY</span><span class="card-num">DOC-001</span></div><h2>Incident Briefing</h2><p id="case-description">Loading case file...</p></div>
+                    <div class="card evidence-card"><div class="card-header"><span class="card-tag">STATUS</span><span class="card-num">LOG-002</span></div><h3>Primary Objectives</h3><ul class="objective-list"><li>Review suspect profiles and motives.</li><li>Analyze recovered evidence.</li><li>Establish a verified sequence of events.</li></ul></div>
                 </div>
+                <div class="card puzzle-card"><span class="card-tag">PUZZLE TERMINAL</span><h3>Archive Verification</h3><p>Enter the active case identifier to verify your archive access and unlock the remaining evidence.</p><div class="input-group"><label class="input-label" for="puzzle-input">CASE IDENTIFIER</label><input id="puzzle-input" class="input-field" autocomplete="off"><button id="verify-puzzle" class="btn btn-accent">VERIFY</button></div><p id="puzzle-feedback" role="status"></p></div>
             </section>
-
-            <section id="suspects" class="tab-pane">
-                <div class="pane-grid cards-3">
-                    <div class="card profile-card">
-                        <div class="profile-frame">
-                            <div class="photo-placeholder">PHOTO</div>
-                        </div>
-                        <div class="profile-info">
-                            <span class="profile-role">PERSON OF INTEREST</span>
-                            <h3>Eleanor Vance</h3>
-                            <p class="profile-meta">Age: 38 | Relation: Business Partner</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="evidence" class="tab-pane">
-                <div class="pane-grid cards-2">
-                    <div class="card evidence-card">
-                        <div class="card-header">
-                            <span class="card-tag">ITEM #89</span>
-                            <span class="card-num">EVID-A</span>
-                        </div>
-                        <h3>Torn Letter</h3>
-                        <p>Found near the hearth. Partial signature visible.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="timeline" class="tab-pane">
-                <div class="timeline-container">
-                    <div class="timeline-item">
-                        <div class="timeline-time">21:00</div>
-                        <div class="card timeline-card">
-                            <h3>Last Confirmed Sight</h3>
-                            <p>Victim retired to the study after dinner.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="accuse" class="tab-pane">
-                <div class="card accuse-card">
-                    <span class="card-tag alert">FINAL FORM</span>
-                    <h2>Issue Warrant</h2>
-                    <p>Select the prime suspect and submit supporting evidence IDs to conclude the investigation.</p>
+            <section id="suspects" class="tab-pane" data-tab-content><div id="suspects-grid" class="pane-grid cards-3"></div></section>
+            <section id="evidence" class="tab-pane" data-tab-content><div id="evidence-grid" class="pane-grid cards-2"></div></section>
+            <section id="timeline" class="tab-pane" data-tab-content><div id="timeline-list" class="timeline-container"></div></section>
+            <section id="accuse" class="tab-pane" data-tab-content>
+                <div class="card accuse-card"><span class="card-tag alert">FINAL FORM</span><h2>Issue Warrant</h2><p>Select the prime suspect and submit the strongest supporting evidence to conclude the investigation.</p>
+                    <div class="input-group"><label class="input-label" for="accused-suspect">PRIME SUSPECT</label><select id="accused-suspect" class="input-field"></select></div>
+                    <div class="input-group"><label class="input-label" for="supporting-evidence">SUPPORTING EVIDENCE</label><select id="supporting-evidence" class="input-field"></select></div>
+                    <button id="submit-accusation" class="btn btn-danger">SUBMIT ACCUSATION</button><p id="accusation-feedback" role="status"></p>
                 </div>
             </section>
         </main>
     </div>
+    <script type="module" src="js/investigation.js"></script>
 </body>
 </html>
