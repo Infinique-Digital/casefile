@@ -11,9 +11,7 @@ export function renderEvidence(evidenceData, activeCaseId) {
 
   const state = loadState();
   const unlockedIds = state.unlockedEvidence;
-  const itemsToRender = evidenceData
-    .filter(item => item.caseId === activeCaseId)
-    .filter(item => unlockedIds.includes(item.id) || !item.unlockCondition);
+  const itemsToRender = evidenceData.filter(item => item.caseId === activeCaseId);
 
   if (itemsToRender.length === 0) {
     container.innerHTML = `<div class="empty-state">NO EVIDENCE LOGGED IN ARCHIVE.</div>`;
@@ -29,7 +27,9 @@ export function renderEvidence(evidenceData, activeCaseId) {
       <div class="evidence-body">
         <h3 class="evidence-title">${item.name}</h3>
         <p class="evidence-desc">${item.description}</p>
-        ${item.unlockCondition ? `<button class="btn btn-accent evidence-unlock" data-evidence-id="${item.id}">UNLOCK FILE</button>` : ''}
+        ${item.unlockCondition && !unlockedIds.includes(item.id)
+          ? `<button type="button" class="btn btn-accent evidence-unlock" data-evidence-id="${item.id}">UNLOCK FILE</button>`
+          : item.unlockCondition ? '<span class="evidence-status">FILE OPENED</span>' : ''}
       </div>
       <footer class="evidence-footer">
         <span class="evidence-meta">LOC: ${item.locationFound || 'UNKNOWN'}</span>
