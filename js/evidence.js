@@ -2,10 +2,11 @@ import { loadState } from './storage.js';
 
 /**
  * Renders every evidence item for the active case into the designated container.
- * Reads data from window.CASEFILE_DATA or LocalStorage.
+ * Displays blurred descriptions in overview. Full descriptions only visible when opening individual evidence.
  * @param {Array} evidenceData - Array of evidence objects
+ * @param {boolean} isOverview - Whether this is being rendered in the overview (blurred) or evidence tab (unblurred)
  */
-export function renderEvidence(evidenceData, activeCaseId) {
+export function renderEvidence(evidenceData, activeCaseId, isOverview = true) {
   const container = document.getElementById('evidence-grid');
   if (!container) return;
 
@@ -18,10 +19,12 @@ export function renderEvidence(evidenceData, activeCaseId) {
     return;
   }
 
-
   container.innerHTML = itemsToRender.map(item => {
     const isLocked = Boolean(item.unlockCondition) && !unlockedIds.includes(item.id);
     const status = isLocked ? 'ARCHIVE LOCKED - VERIFY FIRST' : item.unlockCondition ? 'FILE OPENED' : 'AVAILABLE';
+    
+    // Use blurred description in overview, full description in evidence tab
+    const displayDescription = isOverview && item.descriptionHidden ? item.descriptionHidden : item.description;
 
     return `
     <article class="card evidence-card${isLocked ? ' is-locked' : ''}" data-id="${item.id}">
@@ -31,7 +34,7 @@ export function renderEvidence(evidenceData, activeCaseId) {
       </header>
       <div class="evidence-body">
         <h3 class="evidence-title">${item.name}</h3>
-        <p class="evidence-desc">${item.description}</p>
+        <p class="evidence-desc">${displayDescription}</p>
         <span class="evidence-status">${status}</span>
         ${isLocked ? '' : `<a class="btn btn-accent evidence-open" href="evidence.html?case=${encodeURIComponent(activeCaseId)}&evidence=${encodeURIComponent(item.id)}">OPEN EVIDENCE</a>`}
       </div>
